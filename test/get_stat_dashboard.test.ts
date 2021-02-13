@@ -3,7 +3,7 @@ import * as cdk from '@aws-cdk/core';
 import * as GetStatDashboard from '../lib/get_stat_dashboard-stack';
 
 const regions = { IRELAND: 'eu-west-1'}
-const env = { account: '07609764445', region: regions.IRELAND }
+const env = { account: '076097644456', region: regions.IRELAND }
 
 test('Empty Stack', () => {
     const app = new cdk.App();
