@@ -8,20 +8,44 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "copy-assets": "ts-node tools/copyAssets",
+    "cdk-dev": "cdk deploy GetStatDevDashboardStack",
+    "cdk-uat": "cdk deploy GetStatUATDashboardStack",
+    "cdk-prod": "cdk deploy GetStatProdDashboardStack",
+    "deploy-dev": "npm-run-all copy-assets cdk-dev",
+    "deploy-uat": "npm-run-all copy-assets cdk-uat",
+    "deploy-prod": "npm-run-all copy-assets cdk-prod"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.89.0",
+    "@types/aws-lambda": "^8.10.72",
+    "@types/express": "^4.17.11",
     "@types/jest": "^26.0.10",
     "@types/node": "10.17.27",
-    "jest": "^26.4.2",
-    "ts-jest": "^26.2.0",
+    "@types/shelljs": "^0.8.8",
     "aws-cdk": "1.89.0",
-    "ts-node": "^9.0.0",
+    "jest": "^26.4.2",
+    "npm-run-all": "^4.1.5",
+    "shelljs": "^0.8.4",
+    "ts-jest": "^26.2.0",
+    "ts-node": "^9.1.1",
     "typescript": "~3.9.7"
   },
   "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.89.0",
+    "@aws-cdk/aws-apigatewayv2": "^1.89.0",
+    "@aws-cdk/aws-apigatewayv2-integrations": "^1.89.0",
+    "@aws-cdk/aws-lambda": "^1.89.0",
+    "@aws-cdk/aws-s3": "^1.89.0",
     "@aws-cdk/core": "1.89.0",
+    "@types/ejs": "^3.0.5",
+    "@types/node-fetch": "^2.5.8",
+    "aws-lambda": "^1.0.6",
+    "aws-lambda-nodejs-esbuild": "^1.1.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "path": "^0.12.7",
     "source-map-support": "^0.5.16"
   }
 }

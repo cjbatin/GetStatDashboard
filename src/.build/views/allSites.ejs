@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<%- include('navbar'); -%>
+<body>
+    <div class="container">
+    <% if (data.results.length > 0 ){%>
+            <%  for (let result of data.results){ %>
+                <div class="row">
+                    <div class="col s12 m4 l2"></div>
+                        <div class="col s12 m4 l8">
+                          <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                              <span class="card-title"><%= result.Title%> </span>
+                              <p>Project Id: <%= result.ProjectId %></p>
+                              <p>Id: <%= result.Id %></p>
+                              <p>Total Keywords: <%= result.TotalKeywords %></p>
+                            </div>
+                            <div class="card-action">
+                              <a href=<%="/" + data.apiKey + "/site/" + result.Id + "/tags" %>>See Tags</a>
+                            </div>
+                          </div>
+                        </div>
+                    <div class="col s12 m4 l2"></div>
+                </div>
+            <% } %>
+        <%}%>
+    </div>
+</body>
+</html>

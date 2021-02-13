@@ -1,0 +1,22 @@
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GetStat Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+            <% if (data.apiKey !== undefined ){%>
+            <li><a href=<%= "/" + data.apiKey + "/allSites"%>>All Sites</a></li>
+            <li><a href=<%= "/" + data.apiKey + "/allProjects"%>>All Projects</a></li>
+            <% } %>
+        </ul>
+        </div>
+    </nav>
+  </div>
+  
