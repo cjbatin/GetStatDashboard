@@ -13,7 +13,6 @@ const esbuildOptions: BuildOptions = {
 export class GetStatDashboardStack extends Stack {
   constructor (scope: Construct, id: string, props: StackProps) {
     super(scope, id, props)
-
     const mainHandler = new NodejsFunction(this, 'MainHandler', {
       runtime: Runtime.NODEJS_12_X,
       rootDir: 'src',
@@ -46,7 +45,7 @@ export class GetStatDashboardStack extends Stack {
       logRetention: RetentionDays.TWO_WEEKS
     })
 
-    const api = new HttpApi(this, "GetStatDasboard");
+    const api = new HttpApi(this, id);
     api.addRoutes({
       methods: [HttpMethod.GET],
       integration: new LambdaProxyIntegration({ handler: mainHandler }),
