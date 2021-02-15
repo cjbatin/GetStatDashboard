@@ -69,5 +69,11 @@ export class GetStatDashboardStack extends Stack {
       integration: new LambdaProxyIntegration({ handler: tagsHandler }),
       path: '/{apiKey}/site/{siteId}/tags'
     })
+
+    api.addRoutes({
+      methods: [HttpMethod.POST],
+      integration: new LambdaProxyIntegration({ handler: allProjectsHandler }),
+      path: '/processAPIKey'
+    })
   }
 }

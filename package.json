@@ -9,12 +9,14 @@
     "watch": "tsc -w",
     "test": "jest",
     "copy-assets": "ts-node tools/copyAssets",
+    "cdk-dev-require-approval": "cdk deploy GetStatDevDashboardStack",
     "cdk-dev": "cdk deploy GetStatDevDashboardStack --require-approval $APPROVAL_LEVEL",
     "cdk-uat": "cdk deploy GetStatUATDashboardStack --require-approval $APPROVAL_LEVEL",
     "cdk-prod": "cdk deploy GetStatProdDashboardStack --require-approval $APPROVAL_LEVEL",
     "deploy-dev": "npm-run-all copy-assets cdk-dev",
     "deploy-uat": "npm-run-all copy-assets cdk-uat",
-    "deploy-prod": "npm-run-all copy-assets cdk-prod"
+    "deploy-prod": "npm-run-all copy-assets cdk-prod",
+    "deploy-dev-require-approval": "npm-run-all copy-assets cdk-dev-require-approval"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.89.0",
@@ -45,6 +47,7 @@
     "ejs": "3.1.6",
     "node-fetch": "2.6.1",
     "path": "0.12.7",
-    "source-map-support": "0.5.16"
+    "source-map-support": "0.5.16",
+    "zod": "^1.11.11"
   }
 }
