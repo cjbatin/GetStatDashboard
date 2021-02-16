@@ -22,9 +22,9 @@ async function allSites(apiKey: string) {
           "https://journeyfurther.getstat.com/api/v2/" + apiKey + '/sites/all?format=json'
       )
       const apiResponseJson = await apiResponse.json()
-      const htmlContent = fs.readFileSync(__dirname + '/views/allSites.ejs', 'utf8');
+      const htmlContent = fs.readFileSync(__dirname + '/views/sites.ejs', 'utf8');
       const htmlRenderized = ejs.render(htmlContent, {
-        filename: 'views/allSites.ejs', 
+        filename: 'views/sites.ejs', 
         data: {
           apiKey,
           results: convertResultToArray(apiResponseJson.Response.Result)

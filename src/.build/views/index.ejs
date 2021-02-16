@@ -2,7 +2,19 @@
 <html>
   <%- include('navbar'); -%>
   <body>
-    <p>Hello World</p>
-    <p>Printed Id: <%= data.message %></p>
+    <div class="container">
+        <form class="col s12 m4 l8" action="/processAPIKey" method="get">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="apiKey" name="apiKey" type="text" class="validate">
+              <label for="apiKey">API Key</label>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn waves-effect waves-light col s12 m4 l8" type="submit">Submit
+              <i class="material-icons right">send</i>
+          </div>
+        </form>
+    </div>
   </body>
 </html>
