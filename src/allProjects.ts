@@ -3,26 +3,12 @@ import { APIGatewayProxyHandlerV2 } from "aws-lambda";
 import fetch from "node-fetch";
 import * as ejs from 'ejs';
 import * as fs from 'fs';
-import * as z from 'zod';
-
-const ExpectedBody = z.object({
-  apiKey: z.string()
-});
-type ExpectedBody = z.infer<typeof ExpectedBody>;
 
 export const main: APIGatewayProxyHandlerV2 = async (event) => {
   if (event.pathParameters !== undefined && event.pathParameters.apiKey !== undefined) {
     return allProjects(event.pathParameters.apiKey) 
-  } else if (event.body !== undefined) {
-    const formJSON = JSON.stringify(event.body)
-    console.log("Form JSON")
-    console.log(formJSON)
-    const body: ExpectedBody = ExpectedBody.parse(formJSON)
-    console.log("Body text");
-    console.log(body)
-    console.log("API Key")
-    console.log(body.apiKey)
-    return allProjects(body.apiKey)
+  } else if (event.queryStringParameters !== undefined && event.queryStringParameters.apiKey !== undefined) {
+    return allProjects(event.queryStringParameters.apiKey)
   } else {
     return {
       "statusCode": 404,

@@ -37,6 +37,14 @@ export class GetStatDashboardStack extends Stack {
       logRetention: RetentionDays.TWO_WEEKS
     })
 
+    const projectHandler = new NodejsFunction(this, 'ProjectHandler', {
+      runtime: Runtime.NODEJS_12_X,
+      rootDir: 'src',
+      handler: 'project.main',
+      esbuildOptions,
+      logRetention: RetentionDays.TWO_WEEKS
+    })
+
     const tagsHandler = new NodejsFunction(this, 'TagsHandler', {
       runtime: Runtime.NODEJS_12_X,
       rootDir: 'src',
@@ -66,12 +74,18 @@ export class GetStatDashboardStack extends Stack {
 
     api.addRoutes({
       methods: [HttpMethod.GET],
+      integration: new LambdaProxyIntegration({ handler: projectHandler }),
+      path: '/{apiKey}/project/{projectId}'
+    })
+
+    api.addRoutes({
+      methods: [HttpMethod.GET],
       integration: new LambdaProxyIntegration({ handler: tagsHandler }),
       path: '/{apiKey}/site/{siteId}/tags'
     })
 
     api.addRoutes({
-      methods: [HttpMethod.POST],
+      methods: [HttpMethod.GET],
       integration: new LambdaProxyIntegration({ handler: allProjectsHandler }),
       path: '/processAPIKey'
     })
