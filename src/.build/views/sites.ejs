@@ -25,10 +25,10 @@
       </div>
     </div>
     <div id="allSites">
-      <%- include('allSites', {sites: data.allSites}) %>
+      <%- include('listSites', {sites: data.allSites}) %>
     </div>
-    <div id="trackedSites" class="hidden">
-      <%- include('trackedSites', {sites: data.trackedSites}) %>
+    <div id="trackedSites" style="display:none">
+      <%- include('listSites', {sites: data.trackedSites}) %>
     </div>
     </div>
 </body>
