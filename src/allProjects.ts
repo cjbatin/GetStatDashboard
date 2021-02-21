@@ -7,6 +7,8 @@ import * as fs from 'fs';
 export const main: APIGatewayProxyHandlerV2 = async (event) => {
   if (event.pathParameters !== undefined && event.pathParameters.apiKey !== undefined) {
     return allProjects(event.pathParameters.apiKey) 
+  } else if (event.queryStringParameters !== undefined && event.queryStringParameters.apiKey !== undefined) {
+    return allProjects(event.queryStringParameters.apiKey)
   } else {
     return {
       "statusCode": 404,

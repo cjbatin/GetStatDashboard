@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<%- include('navbar'); -%>
+<script>
+  function myFunction() {
+    var x = document.getElementById("trackingSwitch").checked;
+    if (x === true) {
+      document.getElementById("allSites").style.display= "none" ;
+      document.getElementById("trackedSites").style.display= "inline" ;
+    } else {
+      document.getElementById("trackedSites").style.display= "none" ;
+      document.getElementById("allSites").style.display= "inline" ;
+    }
+  }
+</script>  
+<body>
+    <div class="container">
+    <div class="row">
+      <div class="switch center">
+        <label>
+          Tracking - Off
+          <input id="trackingSwitch" type="checkbox" onchange="myFunction()">
+          <span class="lever"></span>
+          On
+        </label>
+      </div>
+    </div>
+    <div id="allSites">
+      <%- include('listSites', {sites: data.allSites}) %>
+    </div>
+    <div id="trackedSites" style="display:none">
+      <%- include('listSites', {sites: data.trackedSites}) %>
+    </div>
+    </div>
+</body>
+</html>
