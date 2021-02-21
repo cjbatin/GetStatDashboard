@@ -1,4 +1,5 @@
 import { convertResultToArray } from "./convertResultToArray";
+import { trackedSites } from "./trackedSites";
 import { APIGatewayProxyHandlerV2 } from "aws-lambda";
 import fetch from "node-fetch";
 import * as ejs from 'ejs';
@@ -23,11 +24,16 @@ async function allSites(apiKey: string) {
       )
       const apiResponseJson = await apiResponse.json()
       const htmlContent = fs.readFileSync(__dirname + '/views/sites.ejs', 'utf8');
+      const allSites = convertResultToArray(apiResponseJson.Response.Result)
+      const trackedSitesList = trackedSites(allSites)
+      console.log("Tracked sites")
+      console.log(trackedSitesList)
       const htmlRenderized = ejs.render(htmlContent, {
         filename: 'views/sites.ejs', 
         data: {
           apiKey,
-          results: convertResultToArray(apiResponseJson.Response.Result)
+          allSites,
+          trackedSites: trackedSites(allSites)
         }
       });
       return {

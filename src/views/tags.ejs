@@ -4,7 +4,7 @@
     <div class="container">
     <% if (data.results.length > 0 ){%>
         <% if (data.numberOfPages > 0 ){%>
-            <ul class="pagination">
+            <ul class="pagination center">
                 <% if (data.pageNumber === 1) { %>
                     <li class="disabled"><a href=<%="/" + data.apiKey + "/site/" + data.siteId + "/tags?page=1"%>><i class="material-icons">chevron_left</i></a></li>
                 <%} else { %>
@@ -32,6 +32,7 @@
                         <div class="card-content white-text">
                             <span class="card-title"><%= result.Tag %> </span>
                             <p>Id: <%= result.Id %></p>
+                            <p>Type: <%= result.Type %></p>
                         </div>
                         <div class="card-action">
                             <a href=<%="/" + data.apiKey + "/site/" + result.Id + "/tags" %>>See Keywords</a>
